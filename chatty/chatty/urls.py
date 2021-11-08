@@ -5,4 +5,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('chat/', include('chat.urls')),
     path('', include('game.urls')),
+    path('wstest/', include('wstest.urls')),
 ]

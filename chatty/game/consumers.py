@@ -11,12 +11,10 @@ class GameConsumer(AsyncWebsocketConsumer):
         self.game_group_name = 'chat_%s' % self.game_name
 
         # Join game
-        await self.channel_layer.group_add(
-            self.game_group_name,
-            self.channel_name
-        )
+        await self.channel_layer.group_add(self.game_group_name, self.channel_name)
 
         await self.accept()
+        self.send(text_data="[Welcome %s]" % self.game_name)
     
     async def disconnect(self, close_code):
         # Leave game

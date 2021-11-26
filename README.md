@@ -29,9 +29,9 @@ migrate the database:
 ```
 python manage.py migrate
 ```
-tun the development server:
+run the development server:
 ```
-python manage.py runserver
+python manage.py runserver 8008
 ```
 
 # To make a docker container:

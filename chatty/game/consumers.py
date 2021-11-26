@@ -15,6 +15,7 @@ class GameConsumer(AsyncWebsocketConsumer):
 
         await self.accept()
         self.send(text_data="[Welcome %s]" % self.game_name)
+        self.send(text_data="connected to websocket!")
     
     async def disconnect(self, close_code):
         # Leave game
@@ -48,7 +49,7 @@ class GameConsumer(AsyncWebsocketConsumer):
         shuriken = event['shuriken']
 
         # Send message to WebSocket
-        await self.send(text_data=json.dumps({
+        await self.send(game_data=json.dumps({
             'player': player,
             'shuriken': shuriken
         }))

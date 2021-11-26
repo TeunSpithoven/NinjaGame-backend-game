@@ -19,5 +19,4 @@ class Shuriken(models.Model):
     id = models.AutoField(primary_key=True)
     playerName = models.CharField
     posX = models.IntegerField
-    posY = models.IntegerField    
-
+    posY = models.IntegerField

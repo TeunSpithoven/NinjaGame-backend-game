@@ -9,11 +9,11 @@ class Game(models.Model):
 class Player(models.Model):
     id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=255)
-    gameName = models.CharField(max_length=255, default="")
-    health = models.IntegerField
-    points = models.IntegerField
     posX = models.IntegerField
     posY = models.IntegerField
+    gameName = models.CharField(max_length=255, default="")
+    health = models.IntegerField(default="100")
+    points = models.IntegerField(default="0")
 
 class Shuriken(models.Model):
     id = models.AutoField(primary_key=True)

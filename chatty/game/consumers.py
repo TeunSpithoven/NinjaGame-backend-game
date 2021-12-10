@@ -28,6 +28,11 @@ class GameConsumer(AsyncWebsocketConsumer):
     
     # Receive game data
     async def receive(self, text_data):
+        if(text_data == 'hello'):
+            self.channel_layer.group_send({
+                'hello'
+            })
+
         data = json.loads(text_data)
         player = data['player']
         print(player)
@@ -41,7 +46,7 @@ class GameConsumer(AsyncWebsocketConsumer):
         await self.channel_layer.group_send(
             self.game_group_name,
             {
-                'type': 'game_data',
+                'type': 'text_data',
                 'player': player,
                 'shuriken': shuriken
             }

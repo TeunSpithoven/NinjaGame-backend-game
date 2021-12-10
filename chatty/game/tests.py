@@ -1,19 +1,11 @@
 from django.test import TestCase
-
-from chatty.game.consumers import GameConsumer
-
-from channels.testing import WebsocketCommunicator
 from channels.testing import HttpCommunicator
-# from channels.testing import ApplicationCommunicator
+from channels.testing import WebsocketCommunicator
+from game.consumers import GameConsumer
+
 class MyTests(TestCase):
     async def test_my_consumer(self):
-        communicator = HttpCommunicator(GameConsumer, "GET", "/test/")
-        response = await communicator.get_response()
-        self.assertEqual(response["body"], b"test response")
-        self.assertEqual(response["status"], 200)
-
-    async def test_WebsocketCommunicator(self):
-        communicator = WebsocketCommunicator(GameConsumer.as_asgi(), "/testws/")
+        communicator = WebsocketCommunicator(GameConsumer.as_asgi(), "/ws/test")
         connected, subprotocol = await communicator.connect()
         assert connected
         # Test sending text

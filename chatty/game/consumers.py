@@ -11,9 +11,9 @@ class GameConsumer(AsyncWebsocketConsumer):
         self.game_name = self.scope['url_route']['kwargs']['game_name']
         self.game_group_name = 'game_%s' % self.game_name
 
-        # Join game
+        # Join game group
         await self.channel_layer.group_add(self.game_group_name, self.channel_name)
-        # await self.save_game(self.game_name)
+        await self.save_game(self.game_name)
 
         await self.accept()
         self.send(text_data="[Welcome %s]" % self.game_name)
